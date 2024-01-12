@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Products - E-commerce App{% endblock %}
+
+{% block content %}
+    <h1>PRODUCTS OWNED</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <ul>
+        <li><a class="button" href="{{ url_for('product_list') }}">Products Available</a></li>
+        <li><a class="button" href="{{ url_for('add_product') }}">Add Product</a></li>
+    </ul>
+    
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Offer For Sale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td><img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image"></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>${{ product.price }}</td>
+                    <td>
+                        <form action="{{ url_for('owned__product', product_id=product.id) }}" method="post">
+                            <button type="submit" class="button">Offer For Sale</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

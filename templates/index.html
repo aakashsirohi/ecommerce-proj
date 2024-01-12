@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - E-commerce App{% endblock %}
+
+{% block content %}
+    <h1 style="text-align:center;">Welcome to the E-commerce App</h1>
+    <h2 style="text-align:center;">Here you trade goods!</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <br></br>
+    <br></br>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYzx0jY_53UV5THaDGXbV5YvCTr-5ymrUa7ggTmRygIINj7we4JRdl7eIkvpc5hpCRRmw&amp;usqp=CAU" style="display: block; margin: auto; background-color: hsl(0, 0%, 90%); transition: background-color 300ms;">
+    <br></br>
+    <br></br>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product - E-commerce App{% endblock %}
+
+{% block content %}
+    <h1>Add Product</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.name.label }}<br>
+            {{ form.name(size=40) }}<br>
+            {% if form.name.errors %}
+                <span class="error">{{ form.name.errors[0] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.description.label }}<br>
+            {{ form.description(cols=40, rows=5) }}<br>
+            {% if form.description.errors %}
+                <span class="error">{{ form.description.errors[0] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.price.label }}<br>
+            {{ form.price() }}<br>
+            {% if form.price.errors %}
+                <span class="error">{{ form.price.errors[0] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.image_url.label }}<br>
+            {{ form.image_url(size=40) }}<br>
+            {% if form.image_url.errors %}
+                <span class="error">{{ form.image_url.errors[0] }}</span>
+            {% endif %}
+        </div>
+        <div class="button">
+            {{ form.submit }}
+        </div>
+    </form>
+    <ul>
+        <li><a class="button" href="{{ url_for('product_list') }}">Products Available</a></li>
+        <li><a class="button" href="{{ url_for('products_owned_page') }}">Products Owned</a></li>
+
+    </ul>
+{% endblock %}
